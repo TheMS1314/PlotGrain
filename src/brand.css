@@ -1,0 +1,57 @@
+:root {
+  --brand-ink: #222820;
+  --brand-muted: #515e53;
+  --brand-deep: #172820;
+  --brand-primary: #244736;
+  --brand-primary-hover: #1a3629;
+  --brand-paper: #f6f5ee;
+  --brand-surface: #fdfdf8;
+  --brand-wash: #ebeee5;
+  --brand-accent: #dce9c4;
+  --brand-line: #d8ddd0;
+  --brand-control-line: #748779;
+  --brand-focus: #426849;
+  --brand-text: 'Instrument Sans Variable', system-ui, sans-serif;
+  --brand-editorial: 'Instrument Serif', Georgia, serif;
+  --radius-control: .5rem;
+  --radius-surface: .75rem;
+  --control-motion: 150ms ease-out;
+}
+
+.product-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: .62rem;
+  width: fit-content;
+  color: inherit;
+  font-family: var(--brand-text);
+  font-weight: 760;
+  letter-spacing: -.043em;
+  text-decoration: none;
+}
+
+.product-mark {
+  display: inline-block;
+  width: 1.85rem;
+  height: 1.85rem;
+  flex: none;
+  position: relative;
+  background: var(--brand-primary);
+  color: var(--brand-surface);
+  border-radius: .34rem;
+}
+
+.product-mark::before, .product-mark::after {
+  position: absolute;
+  content: '';
+  inset: .43rem .5rem .53rem .45rem;
+  border: 1px solid currentColor;
+  transform: rotate(-11deg) skew(-12deg);
+}
+
+.product-mark::after {
+  inset: .68rem .44rem .36rem .59rem;
+  border-top: 0;
+  border-left: 0;
+  opacity: .78;
+}

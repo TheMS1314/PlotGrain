@@ -1,0 +1,6 @@
+import '@fontsource-variable/instrument-sans'
+import '@fontsource/instrument-serif/latin-400.css'
+import '@fontsource/instrument-serif/latin-400-italic.css'
+import './brand.css'
+import './landing.css'
+import './design-review.css'

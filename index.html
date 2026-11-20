@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f0">
+  <meta name="description" content="Screen Bangkok R.8 development sites. Explore buildable envelopes, compare 3D concepts, and carry the geometry into CAD or BIM.">
+  <link rel="icon" href="/media/plot-icon.png" type="image/png">
+  <title>Plotgrain — Early site feasibility</title>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="product-header" id="top">
+    <div class="site-wrap product-navigation">
+      <a class="product-identity" href="/" aria-label="Plotgrain home"><span class="product-mark" aria-hidden="true"></span><span>Plotgrain</span></a>
+      <nav class="product-links" aria-label="Product navigation">
+        <a href="#preview">Example study</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="product-account-actions">
+        <a class="product-button nav-account" href="/profile/">Profile</a>
+        <a class="product-button nav-try" href="/study/">Open workspace</a>
+      </div>
+    </div>
+  </header>
+  <div class="site-wrap landing-review-navigation" id="review-navigation" hidden><a href="/design-review/">Design review</a></div>
+  <main id="main" tabindex="-1">
+    <section class="hero site-wrap" aria-labelledby="hero-title">
+      <div class="hero-cover">
+        <picture class="hero-image">
+          <source type="image/avif" srcset="/media/bangkok-infill-720.avif 720w, /media/bangkok-infill-1120.avif 1120w, /media/bangkok-infill-1536.avif 1536w" sizes="(max-width: 580px) 90vw, (max-width: 1590px) 94vw, 1490px">
+          <source media="(max-width: 660px)" srcset="/media/bangkok-infill-small.webp">
+          <img src="/media/bangkok-infill.webp" width="1536" height="1024" alt="Architectural illustration of a planted residential infill building among Bangkok shophouses" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="hero-copy">
+          <p class="eyebrow">Early site feasibility for Bangkok</p>
+          <h1 id="hero-title">See what a site <em>can become.</em></h1>
+          <p class="hero-description">Draw a parcel, see what shapes the buildable space, and compare two concepts in 3D.</p>
+          <div class="hero-actions">
+            <a class="product-button primary-button" href="/study/">Open workspace</a>
+            <a class="product-button cover-secondary" href="#preview">Explore the example</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-caption"><span>Residential infill illustration · Bangkok</span><span>Study coverage · R.8 residential and office</span></div>
+    </section>
+
+    <section class="preview-section" id="preview" aria-labelledby="example-title">
+      <div class="site-wrap preview-layout">
+        <div class="preview-intro">
+          <div><p class="eyebrow">Case study · Bang Son</p><h2 id="example-title">One plot. Two ways to build.</h2></div>
+          <p>Inspect the envelope, then see how a courtyard and a more compact footprint trade floor area, height, and open space.</p>
+        </div>
+        <div class="demo-frame">
+          <div class="demo-heading">
+            <p class="demo-site">Soi Krung Thep–Nonthaburi 35</p>
+            <div class="demo-buttons" role="group" aria-label="Example study view">
+              <button type="button" data-demo="envelope" aria-pressed="true">Envelope</button>
+              <button type="button" data-demo="garden" aria-pressed="false">Garden Court</button>
+              <button type="button" data-demo="compact" aria-pressed="false">Compact Stack</button>
+            </div>
+          </div>
+          <div class="demo-body">
+            <div class="demo-image">
+              <img id="demo-visual" src="/media/preview-envelope.webp" width="1200" height="730" alt="Stepped buildable envelope within the mapped Bang Son neighborhood" loading="lazy" decoding="async">
+              <span class="demo-map-credit">© OpenStreetMap · Overture Maps</span>
+            </div>
+            <div class="demo-reading" aria-live="polite">
+              <div class="demo-description">
+                <h3 id="demo-name">Buildable envelope</h3>
+                <p id="demo-description">The road-height plane and setbacks trim the modeled volume as it rises.</p>
+              </div>
+              <dl class="demo-measurements">
+                <div><dt id="demo-primary-label">Plot area</dt><dd id="demo-primary">1,043.8 m²</dd></div>
+                <div><dt id="demo-secondary-label">Base FAR budget</dt><dd id="demo-secondary">6,262.6 m²</dd></div>
+              </dl>
+            </div>
+          </div>
+          <div class="demo-footer">
+            <p>Mapped streets and building footprints. Parcel and road dimensions are schematic. Building heights are estimated.</p>
+            <div class="demo-actions">
+              <a class="text-action" href="/study/?view=compare">Compare in workspace</a>
+              <a class="product-button secondary-button" id="demo-open" href="/study/?view=envelope">Open in workspace</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
+      <div class="site-wrap workflow-layout">
+        <div class="workflow-copy">
+          <h2 id="workflow-title">From boundary to brief.</h2>
+          <ul class="workflow-steps">
+            <li><h3>Start with the boundary</h3><p>Draw or import the plot, compare it with a survey, and confirm zoning and road frontage.</p></li>
+            <li><h3>Read the constraints</h3><p>See how setbacks, open space, and height shape the envelope. Compare checked concepts in 3D and explore their ground shadows.</p></li>
+            <li><h3>Take it into design</h3><p>Review several parcels together, flag overlaps, and export to GeoJSON, DXF, IFC4, or GLB.</p></li>
+          </ul>
+        </div>
+        <figure class="workflow-figure">
+          <img src="/media/preview-survey.webp" width="1200" height="730" loading="lazy" decoding="async" alt="Bang Son plan view comparing the parcel boundary with a dashed survey outline">
+          <figcaption><span><i class="line-key parcel-key" aria-hidden="true"></i> Study boundary</span><span><i class="line-key survey-key" aria-hidden="true"></i> Example survey outline</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="site-wrap faq-section" id="faq" aria-labelledby="faq-title">
+      <div>
+        <h2 id="faq-title">What the study covers.</h2>
+        <p>The workspace shows the rules and inputs behind each result. Use it for early feasibility and professional review.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Which sites can I study?</summary>
+          <p>The screening model covers Bangkok’s R.8 district for condominium, apartment, and office concepts within the documented size and frontage limits. The Bang Son example includes mapped streets and building footprints. For other plots, confirm zoning and supply the relevant survey and road data.</p>
+        </details>
+        <details>
+          <summary>What files can I bring in?</summary>
+          <p>Import WGS84 GeoJSON polygons for plots and multi-parcel studies. The survey comparison also accepts a single polygon in WGS84 / UTM 47N. You can supply building footprints with a numeric <code>height_m</code> field for the context and sun study.</p>
+        </details>
+        <details>
+          <summary>What can I take into other tools?</summary>
+          <p>Use GeoJSON for GIS and study records, DXF for metric CAD linework, IFC4 for BIM massing, and GLB for 3D presentation geometry. The workspace explains what each export contains.</p>
+        </details>
+        <details>
+          <summary>What still needs professional review?</summary>
+          <p>Confirm official boundaries and zoning, road rights, fire access, utilities, parking, and applicable permit requirements with the project team. The built-in concepts are illustrative massing based on the modeled rules and supplied inputs.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <div class="site-wrap closing-layout">
+        <div><h2>Start with a site.</h2><p>Open the Bang Son example or bring your own boundary.</p></div>
+        <a class="product-button primary-button" href="/study/">Open workspace</a>
+      </div>
+    </section>
+  </main>
+  <footer class="product-footer">
+    <div class="site-wrap">
+      <a class="product-identity" href="/"><span class="product-mark" aria-hidden="true"></span><span>Plotgrain</span></a>
+      <a href="/projects/">Customer workspaces</a>
+      <a href="/sign-in/">Sign in</a>
+      <a href="/study/#zone-rules">Rules and sources</a>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+  <script type="module" src="/src/landing.js"></script>
+</body>
+</html>

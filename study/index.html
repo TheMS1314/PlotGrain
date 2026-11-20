@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fdfdf8">
+  <meta name="description" content="Explore building envelopes and concept massing for Bangkok’s R.8 residential zone.">
+  <link rel="icon" href="/media/plot-icon.png" type="image/png">
+  <title>Study workspace — Plotgrain</title>
+</head>
+<body class="workspace-page">
+  <a href="#study-workspace" class="workspace-skip">Skip to workspace</a>
+  <header class="masthead">
+    <div class="identity">
+      <a class="product-identity" id="study-home" href="/" aria-label="Plotgrain home"><span class="product-mark" aria-hidden="true"></span><span>Plotgrain</span></a>
+      <h1 class="workspace-name">Study workspace</h1>
+    </div>
+    <div class="mast-actions">
+      <details id="study-tools" class="study-tools">
+        <summary>Study tools</summary>
+        <div class="study-tools-panel">
+          <button id="open-parcels" type="button">Parcels</button>
+          <button id="open-assembly" type="button" aria-pressed="false">Site plan</button>
+          <button id="present" type="button" aria-pressed="false" disabled>Present</button>
+          <button id="reset" type="button">Load example</button>
+          <button id="load-narrow" type="button">Load no-fit example</button>
+          <a id="open-customer-workspaces" href="/projects/">Customer workspaces</a>
+          <a href="/profile/">Profile</a>
+          <button id="show-save-version" type="button" hidden>Save project version</button>
+        </div>
+      </details>
+      <button id="export" type="button" disabled>Export study</button>
+      <button id="exit-presentation" type="button" hidden>Exit presentation</button>
+    </div>
+  </header>
+  <div id="saved-study-status" class="saved-study-status" hidden><span id="saved-study-message" role="status"></span><a id="resume-study-sign-in" href="/sign-in/" hidden>Sign in to open study</a><a id="return-to-project" href="/projects/">Customer workspaces</a></div>
+  <nav class="compact-navigation" aria-label="Jump to workspace panel">
+    <a href="#site-inputs">Inputs</a><a href="#site-map">Map</a><a href="#site-results">Results</a>
+  </nav>
+  <div class="design-toolbar" id="design-toolbar" hidden>
+    <div class="design-toolbar-context"><a id="design-review-link" href="/design-review/">Design review</a><span id="design-direction"></span><span id="draft-status" class="draft-status" role="status" hidden></span></div>
+    <div class="design-panel-buttons" role="group" aria-label="Workspace panel">
+      <button type="button" data-design-panel="inputs" aria-controls="site-inputs" aria-pressed="false">Site inputs</button>
+      <button type="button" data-design-panel="results" aria-controls="site-results" aria-pressed="true">Results</button>
+      <a class="design-map-jump" href="#site-map">Map</a>
+    </div>
+  </div>
+  <main id="study-workspace" tabindex="-1">
+    <aside class="panel inputs" id="site-inputs" aria-label="Plot inputs">
+      <section>
+        <div class="panel-heading"><h2>Site inputs</h2><span id="input-basis" class="basis-label">Example</span></div>
+        <p id="evidence" class="note">Schematic plot and road dimensions on the Bang Son map.</p>
+        <p class="location-readout"><span id="input-location"></span><span id="input-coverage"></span></p>
+        <div class="actions"><button id="draw" class="primary" type="button">Draw plot</button><button id="undo" type="button" hidden>Undo point</button><button id="cancel" type="button" hidden>Cancel</button><button id="edit" type="button">Edit vertices</button><button id="import" type="button" aria-describedby="import-help">Import GeoJSON</button><input id="import-file" type="file" accept=".geojson,.json,application/geo+json" hidden></div>
+        <p id="draw-help" class="hint" aria-live="polite"></p><p id="import-help" class="hint">Import Polygon or MultiPolygon GeoJSON in WGS84. Multipart files are screened one piece at a time.</p>
+        <p id="parcel-import-status" class="hint import-status" role="status" hidden></p>
+        <div class="survey-strip"><div><strong>Survey record</strong><p id="survey-summary">No source recorded</p><p id="survey-comparison" hidden></p></div><button id="edit-survey" type="button">Add record</button></div>
+        <details class="location-search" id="location-search">
+          <summary>Go to coordinates</summary>
+          <form id="location-form">
+            <div class="fields">
+              <div><label for="latitude">Latitude</label><input id="latitude" type="number" min="-90" max="90" step="any" inputmode="decimal" required></div>
+              <div><label for="longitude">Longitude</label><input id="longitude" type="number" min="-180" max="180" step="any" inputmode="decimal" required></div>
+            </div>
+            <button id="locate" type="submit">Center map</button>
+            <p id="location-error" class="hint" role="status"></p>
+          </form>
+        </details>
+        <div class="input-group">
+        <div class="field-title"><label for="frontage">Road frontage</label><button type="button" id="pick-edge" aria-pressed="false">Pick on map</button></div>
+        <select id="frontage"></select>
+        <div class="fields">
+          <div><label for="width">Public road width (m)</label><input id="width" type="number" min="0.2" max="120" step="0.1" value="5"></div>
+          <div><label for="center">Centerline from plot (m)</label><input id="center" type="number" min="0.1" max="119" step="0.1" value="2.5"></div>
+        </div>
+        <p class="hint" id="road-help">Select the edge facing the public road and enter its surveyed right-of-way dimensions. <button type="button" id="center-road" class="inline-button">Use midpoint</button> if the road is symmetric.</p>
+        </div>
+        <div class="input-group">
+          <label for="zone-choice">Zoning district</label>
+          <select id="zone-choice"><option value="r8">R.8 · High-density residential</option><option value="unknown">Unknown or outside R.8</option></select>
+          <label class="zone-confirm" id="zone-confirm" hidden><input id="zone" type="checkbox"> I’ve checked that this plot is in R.8</label>
+          <label for="use">Building type</label>
+          <select id="use"><option value="residential">Condominium / apartments</option><option value="office">Office</option></select>
+        </div>
+      </section>
+      <section id="zone-rules">
+        <h2>R.8 zoning limits</h2>
+        <dl class="rule-list">
+          <div><dt>Base floor area ratio</dt><dd>6:1</dd></div>
+          <div><dt>Zoning open space</dt><dd>5% of floor area</dd></div><div><dt>City open space</dt><dd id="local-open-rule">30% of plot</dd></div>
+          <div><dt>Planting area</dt><dd>≥ 50% of open space</dd></div>
+          <div><dt>Height from road</dt><dd>2× distance to far edge</dd></div>
+        </dl>
+        <details>
+          <summary>Sources and study scope</summary>
+          <p>Based on the 2013 R.8 zone and the building-control clauses below. Single straight frontage, flat grade, facade openings, no FAR bonuses, and buildings below 23 m. Office concepts stay under 1,000 m².</p>
+          <p>This is a screening study. Verify parcel zoning, overlays, rights of way, local requirements, and building-specific approvals before using it for a permit or acquisition.</p>
+          <a href="https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk10.pdf" target="_blank" rel="noopener">Bangkok plan · Clause 15</a>
+          <a href="https://webportal.bangkok.go.th/public/user_files_editor/76/law/tk24.pdf" target="_blank" rel="noopener">Bangkok building ordinance · Clauses 49–55</a>
+          <a href="https://webportal.bangkok.go.th/public/user_files_editor/95/ITA2566/O4/CI/ci-11.pdf" target="_blank" rel="noopener">Regulation 55 · Clauses 33, 41, 44, 50</a>
+        </details>
+      </section>
+    </aside>
+    <section class="scene" id="site-map" aria-label="Site map">
+      <div id="map" aria-label="Interactive 3D map of Bang Son"></div>
+      <div class="map-head"><div class="map-label"><span id="map-place">Bang Son · Bangkok</span><strong id="map-name">Soi Krung Thep–Nonthaburi 35</strong><strong id="assembly-map-title" hidden>Site plan</strong></div><button id="pitch" type="button" aria-pressed="true">Plan view</button></div>
+      <div class="camera-controls" aria-label="Map camera">
+        <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+        <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+        <button id="rotate" type="button" aria-label="Rotate map" title="Rotate map">↻</button>
+        <button id="recenter" type="button" aria-label="Fit plot" title="Fit plot">◎</button>
+        <button id="north" type="button" aria-label="Reset to north" title="Reset to north"><span id="compass">N</span></button>
+      </div>
+      <details class="map-settings" id="map-settings">
+        <summary>Display</summary>
+        <div class="settings-body">
+          <label for="scene-style">3D appearance</label>
+          <select id="scene-style"><option value="architectural">Architectural</option><option value="analysis">Analysis colors</option></select>
+          <div class="context-settings">
+            <label for="context-source">Height data source</label><input id="context-source" type="text" maxlength="70" placeholder="e.g. Survey S-104">
+            <div class="actions"><button type="button" id="load-context">Load heights</button><button type="button" id="reset-context" hidden>Use saved map</button></div>
+            <input id="context-file" type="file" accept=".geojson,.json,application/geo+json" hidden>
+            <p id="context-state" class="hint" role="status">GeoJSON footprints with numeric height_m values.</p>
+          </div>
+          <label for="study-name">Plot name</label><input id="study-name" type="text" maxlength="45" placeholder="Name this plot">
+          <label><input type="checkbox" id="show-dims" checked> Edge dimensions in plan</label>
+          <label><input type="checkbox" id="show-labels" checked> Plot name and area</label>
+          <label><input type="checkbox" id="show-existing" checked> Existing buildings</label>
+          <label><input type="checkbox" id="cutaway" checked> Outline buildings on plot</label>
+          <label for="mass-opacity">Proposed massing <output id="mass-opacity-value">87%</output></label>
+          <input type="range" id="mass-opacity" min="15" max="100" value="87">
+          <label for="context-opacity">Surrounding buildings <output id="context-opacity-value">100%</output></label>
+          <input type="range" id="context-opacity" min="15" max="100" value="100">
+        </div>
+      </details>
+      <div class="studio-tools" aria-label="3D studio">
+        <button id="orbit" type="button" aria-pressed="false" title="Drag to change angle in 3D">Orbit</button>
+        <details id="solar-panel" class="solar-panel">
+          <summary>Sun study</summary>
+          <div class="solar-controls">
+            <strong>Ground shadows</strong>
+            <div class="fields">
+              <div><label for="sun-date">Date</label><input id="sun-date" type="date"></div>
+              <div><label for="sun-time">Bangkok time</label><input id="sun-time" type="time" value="09:00"></div>
+            </div>
+            <label class="sun-option"><input type="checkbox" id="sun-context" checked> Include surrounding buildings</label>
+            <p id="sun-result" class="hint" role="status"></p>
+          </div>
+        </details>
+        <button id="export-model" type="button" disabled>Export 3D</button>
+      </div>
+      <div class="presentation-bar" id="presentation-bar" hidden>
+        <div><div id="presentation-summary"></div><small id="illustration-note" hidden>Illustrative facade. Surrounding heights are estimated.</small></div>
+        <div id="presentation-views" class="presentation-views" aria-label="Presentation views">
+          <button type="button" data-view="envelope" aria-pressed="true">Envelope</button>
+          <button type="button" data-view="0" aria-pressed="false">Garden Court</button>
+          <button type="button" data-view="1" aria-pressed="false">Compact Stack</button>
+        </div>
+      </div>
+      <p id="map-keyboard" class="sr-only">Use arrow keys to pan, plus and minus to zoom, and the camera controls to change view. Hold Shift while dragging to orbit the 3D view.</p>
+      <div id="map-tooltip" class="map-tooltip" aria-hidden="true" hidden><strong></strong><span></span></div>
+      <div id="map-scale" class="map-scale" aria-hidden="true"></div>
+      <div class="drawing-tools" id="drawing-tools" aria-label="Draw parcel" hidden>
+        <button type="button" id="map-draw-undo">Undo point</button>
+        <button type="button" id="map-draw-cancel">Cancel</button>
+        <button type="button" id="map-draw-finish" class="primary">Finish plot</button>
+      </div>
+      <div class="map-footer"><span><i class="swatch plot"></i>Plot</span><span><i class="swatch road"></i>Facing edge</span><span><i class="swatch build" id="proposal-key"></i><span id="map-legend">Buildable</span></span><span><i class="swatch context"></i><span id="context-key">Existing · estimated heights</span></span>
+        <span id="shadow-key" hidden><i class="swatch shadow"></i>Ground shadow</span><span id="overlap-key" hidden><i class="swatch overlap"></i>Mapped overlap</span><span id="survey-key" hidden><i class="swatch survey"></i>Survey outline</span></div>
+      <div class="map-footer" id="assembly-legend" hidden><span><i class="swatch plot"></i>Parcel</span><span><i class="swatch road"></i>Road frontage</span><span><i class="swatch shared"></i>Shared land</span><span><i class="swatch build"></i>Selected concept</span><span><i class="swatch clash"></i>Overlapping land</span></div>
+      <div class="map-attribution"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a><span id="overture-attribution"> · <a href="https://docs.overturemaps.org/attribution/" target="_blank" rel="noopener">Overture Maps</a></span></div>
+      <p id="map-message" role="status" hidden></p>
+    </section>
+    <aside class="panel results" id="site-results" aria-label="Feasibility results">
+      <section>
+        <div class="section-head"><h2>Feasibility</h2><span id="status" class="status" role="status">Calculating</span></div>
+        <p id="result-basis" class="basis-readout"></p>
+        <p id="result-evidence" class="result-evidence" hidden></p>
+        <div class="stats"><div><span>Plot area</span><strong id="plot-area">–</strong></div><div><span>Base FAR budget</span><strong id="budget">–</strong></div></div>
+        <div id="capacity" class="capacity" hidden>
+          <div><span>Modeled floor-plate cap</span><strong id="plate-cap"></strong></div>
+          <p id="plate-basis"></p>
+        </div>
+        <div id="review-board" class="review-board" role="group" aria-label="Example concepts" hidden></div>
+        <div id="views" class="tabs" aria-label="Map layers">
+          <button type="button" data-view="envelope" aria-pressed="true">Envelope</button>
+          <button type="button" data-view="0" aria-pressed="false">Garden Court</button>
+          <button type="button" data-view="1" aria-pressed="false">Compact Stack</button>
+        </div>
+        <button id="compare-concepts" class="compare-trigger" type="button" aria-haspopup="dialog" aria-controls="compare-dialog" disabled hidden>Compare concepts</button>
+        <div id="slice-control" hidden><label for="slice-height">Inspect at height <output id="slice-value" for="slice-height"></output></label><input id="slice-height" type="range" min="0" max="10" value="10" step="1">
+          <label for="constraint-step">Map layer</label><select id="constraint-step">
+            <option value="final">All geometric constraints</option><option value="plot">Plot boundary</option>
+            <option value="boundary">After boundary setbacks</option><option value="road">After road setback</option>
+          </select>
+        </div>
+        <div id="insight"></div>
+        <div id="site-overlap" class="site-overlap" hidden></div>
+      </section>
+      <section>
+        <div class="panel-heading"><h2>Example concepts</h2><span id="concept-count" class="basis-label" hidden></span></div>
+        <p id="concept-basis" class="concept-basis" hidden>Generated massing studies target preset sizes within the modeled limits.</p>
+        <div id="concepts"></div>
+        <details class="review"><summary>What still needs review?</summary><p>Official plot boundaries, zoning and overlays, road classification and grade, public-road frontage and access under Bangkok ordinance clauses 52–53, parking, fire access and egress, and any category-specific or permit requirements.</p></details>
+      </section>
+    </aside>
+    <aside id="assembly-panel" class="panel assembly-panel" aria-label="Site coordination" hidden>
+      <section>
+        <div class="panel-heading"><h2 id="assembly-title" tabindex="-1">Site coordination</h2><button type="button" id="return-study">Back to parcel</button></div>
+        <p id="assembly-status" class="status assembly-status" role="status"></p>
+        <dl class="assembly-stats">
+          <div><dt>Mapped site</dt><dd id="assembly-area">—</dd></div>
+          <div><dt>Shared land</dt><dd id="assembly-shared">—</dd></div>
+          <div><dt>Selected floor area</dt><dd id="assembly-floor">—</dd></div>
+          <div><dt>Selected footprint</dt><dd id="assembly-footprint">—</dd></div>
+        </dl>
+        <div id="assembly-issues" class="assembly-issues" hidden></div>
+      </section>
+      <section>
+        <div class="panel-heading"><h2>Parcel concepts</h2><span id="assembly-selection-count" class="basis-label"></span></div>
+        <div id="assembly-parcels" class="assembly-parcels"></div>
+      </section>
+      <section>
+        <h2>Site review</h2>
+        <p class="hint">Record the team’s review status and document references for this plan.</p>
+        <div id="assembly-reviews" class="assembly-reviews"></div>
+        <button type="button" id="assembly-export" class="primary" disabled>Export site plan</button>
+      </section>
+    </aside>
+  </main>
+  <dialog id="parcel-workspace" aria-labelledby="workspace-title">
+    <header class="workspace-header"><div><h2 id="workspace-title">Parcel workspace</h2><p>Compare separate sites or alternative assumptions for one site.</p></div><button id="close-parcels" type="button" aria-label="Close parcel workspace">Close</button></header>
+    <div class="workspace-tools">
+      <button id="new-parcel" class="primary" type="button">Draw another parcel</button>
+      <button id="add-parcel-file" type="button">Import GeoJSON</button>
+      <button id="duplicate-parcel" type="button">Duplicate as option</button>
+      <button id="fit-parcels" type="button">Fit all on map</button>
+      <button id="plan-from-parcels" type="button">Open site plan</button>
+      <button id="export-parcels" type="button">Export comparison</button>
+    </div>
+    <p id="workspace-notice" class="hint" role="status"></p>
+    <section id="site-plan-summary" class="site-plan-summary" aria-label="Site plan area" hidden>
+      <strong>Site plan area</strong>
+      <p id="site-plan-metrics" class="hint" aria-live="polite"></p>
+    </section>
+    <div class="workspace-table">
+      <table><caption class="sr-only">Parcel and scenario comparison</caption>
+        <thead><tr><th scope="col">Parcel</th><th scope="col">Planning role</th><th scope="col">Plot area</th><th scope="col">Base FAR budget</th><th scope="col">Largest generated concept</th><th scope="col">Existing overlap</th><th scope="col">Status</th></tr></thead>
+        <tbody id="parcel-rows"></tbody>
+      </table>
+    </div>
+    <p class="hint workspace-footnote">Mark common greens or access corridors as Shared land. The site total counts each mapped square metre once. Development checks still apply to individual parcels.</p>
+  </dialog>
+  <dialog id="survey-dialog" aria-labelledby="survey-title">
+    <header class="workspace-header"><div><h2 id="survey-title">Survey record</h2><p id="survey-parcel"></p></div><button id="close-survey" type="button">Close</button></header>
+    <form id="survey-form" class="export-body">
+      <label for="survey-reference">Survey reference</label>
+      <input id="survey-reference" type="text" maxlength="100" placeholder="e.g. Drawing S-104, rev. B" required>
+      <label for="survey-date">Survey date <span class="optional">optional</span></label>
+      <input id="survey-date" type="date">
+      <div class="fields">
+        <div><label for="survey-area">Recorded area (m²)</label><input id="survey-area" type="number" step="any" min="0" inputmode="decimal"></div>
+        <div><label for="survey-tolerance">Area tolerance (m²)</label><input id="survey-tolerance" type="number" step="any" min="0" inputmode="decimal"></div>
+      </div>
+      <fieldset class="survey-file-set">
+        <legend>Survey outline <span class="optional">optional</span></legend>
+        <label for="survey-crs">Outline coordinates</label>
+        <select id="survey-crs"><option value="4326">WGS84 · Longitude and latitude</option><option value="32647">WGS84 / UTM 47N · Metres</option></select>
+        <div class="actions"><button id="pick-survey-file" type="button">Upload polygon</button><button id="remove-survey-file" type="button" hidden>Remove outline</button></div>
+        <input id="survey-file" type="file" accept=".geojson,.json,application/geo+json" hidden><p id="survey-file-status" class="hint" role="status"></p>
+      </fieldset>
+      <p class="hint">The record compares area and outline overlap against the file you supply. Have a survey professional verify the reference and boundary.</p>
+      <p id="survey-error" class="hint" role="status"></p>
+      <div class="actions"><button type="submit" class="primary">Save record</button> <button id="clear-survey" type="button" hidden>Remove record</button></div>
+    </form>
+  </dialog>
+  <dialog id="save-version-dialog" aria-labelledby="save-version-title">
+    <form id="save-version-form">
+      <h2 id="save-version-title">Save a project version</h2>
+      <label for="version-label">Version name</label>
+      <input id="version-label" name="label" required maxlength="100" placeholder="Client review">
+      <p id="save-version-status" role="status"></p>
+      <div id="save-conflict-actions" class="actions" hidden>
+        <button id="export-conflict-draft" type="button">Export my edits</button>
+        <a id="open-latest-cloud-study" target="_blank" rel="noopener noreferrer">Open latest version in a new tab</a>
+      </div>
+      <div class="actions"><button id="confirm-version" class="primary" type="submit">Save version</button><button id="cancel-version" type="button">Cancel</button></div>
+    </form>
+  </dialog>
+  <dialog id="compare-dialog" aria-labelledby="compare-title">
+    <header class="workspace-header">
+      <div><p class="sheet-label">Plotgrain · Feasibility sheet</p><h2 id="compare-title">Compare concepts</h2><p id="compare-location"></p></div>
+      <div class="comparison-actions"><button id="print-sheet" type="button" hidden>Print sheet</button><button id="close-compare" type="button" aria-label="Close concept comparison" autofocus>Close</button></div>
+    </header>
+    <div class="compare-body">
+      <div class="compare-modes" role="group" aria-label="Comparison layout">
+        <button type="button" data-compare-mode="pair" aria-pressed="true">Side by side</button>
+        <button type="button" data-compare-mode="overlay" aria-pressed="false">Overlay</button>
+      </div>
+      <div class="compare-visuals" id="compare-visuals" data-mode="pair"></div>
+      <div id="compare-reveal" class="compare-reveal" hidden>
+        <label for="compare-split">Reveal balance</label>
+        <input type="range" id="compare-split" min="0" max="100" value="50">
+      </div>
+      <div class="compare-captions" id="compare-captions"></div>
+      <p class="compare-takeaway" id="compare-takeaway"></p>
+      <div id="sheet-basis" class="sheet-basis" hidden></div>
+      <table class="compare-table">
+        <caption>Example massing studies shown at the same scale and angle.</caption>
+        <thead><tr><th scope="col">Measure</th><th scope="col" id="compare-first"></th><th scope="col" id="compare-second"></th></tr></thead>
+        <tbody id="compare-measures"></tbody>
+        <tbody id="compare-checks"><tr class="check-group"><th colspan="3" scope="rowgroup">Modeled rule checks</th></tr></tbody>
+      </table>
+      <div id="sheet-sources" class="sheet-sources" hidden>
+        <h3>Rule sources and review</h3>
+        <p>Concept geometry and checks use the study inputs. Confirm official zoning, survey, public-road frontage, and permit provisions before relying on a design.</p>
+        <ul></ul>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="export-dialog" aria-labelledby="export-title">
+    <header class="workspace-header">
+      <div><h2 id="export-title">Export GeoJSON</h2><p id="export-description"></p></div>
+      <button id="close-export" type="button" aria-label="Close export">Close</button>
+    </header>
+    <div class="export-body">
+      <p id="export-file-name" class="export-filename"></p>
+      <div class="actions export-actions">
+        <a id="save-geojson" class="save-geojson" download>Download GeoJSON</a>
+        <button id="copy-geojson" type="button">Copy GeoJSON</button>
+      </div>
+      <p id="export-status" class="hint" role="status">You can select and copy the preview if your browser blocks saving from this panel.</p>
+      <label for="export-preview">File preview</label>
+      <textarea id="export-preview" rows="11" readonly spellcheck="false" wrap="off"></textarea>
+    </div>
+  </dialog>
+  <dialog id="model-dialog" aria-labelledby="model-title">
+    <header class="workspace-header"><div><h2 id="model-title">Export 3D model</h2><p id="model-description"></p></div><button id="close-model" type="button" aria-label="Close 3D model export">Close</button></header>
+    <div class="export-body">
+      <label for="model-format">Format</label>
+      <select id="model-format"><option value="glb">GLB · 3D mesh</option><option value="ifc">IFC4 · BIM massing</option><option value="dxf">DXF · CAD linework</option></select>
+      <p id="format-description" class="hint"></p>
+      <p class="hint">Exports use metres and carry the selected parcel and calculated study geometry.</p>
+      <a id="download-model" class="save-geojson" download>Download GLB</a>
+      <p id="model-status" class="hint" role="status"></p>
+    </div>
+  </dialog>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

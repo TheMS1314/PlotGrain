@@ -1,0 +1,25 @@
+.auth-panel { max-width: 32rem; margin: clamp(1.6rem, 8vh, 6.5rem) auto 3rem; padding: clamp(1.15rem, 4.2vw, 2.8rem); }
+.auth-panel h1 { font: 400 clamp(2.9rem, 7vw, 4.4rem)/.95 var(--brand-editorial); margin-bottom: .65rem; }
+.auth-panel #auth-intro, .auth-panel small { color: var(--brand-muted); }
+.auth-panel .record-form { justify-items: stretch; gap: .75rem; margin: .9rem 0; }
+.auth-panel input { margin-top: .2rem; }
+.auth-panel #auth-submit { min-height: 46px; }
+.auth-panel #auth-submit:hover:not(:disabled) { background: var(--brand-primary-hover); }
+.auth-panel #auth-submit:disabled { opacity: .7; cursor: wait; }
+.auth-panel .project-status:empty { min-height: 0; }
+.auth-panel .text-action { color: var(--brand-primary); }
+.password-control { position: relative; }
+.auth-panel .password-control input { padding-inline-end: 3.4rem; }
+.password-control .password-toggle { position: absolute; inset: .2rem .2rem 0 auto; display: grid; place-items: center; width: 44px; min-height: 44px; padding: 0; border-color: transparent; background: transparent; }
+.password-toggle svg { width: 21px; height: 21px; }
+.password-toggle .eye-slash { visibility: hidden; }
+.password-toggle[data-visible=true] .eye-slash { visibility: visible; }
+.auth-panel input[aria-invalid=true] { border-color: #8c4b29; }
+.auth-panel #password-match { color: #754321; }
+.auth-panel #password-strength[data-strong=true] { color: var(--brand-primary); }
+#auth-links { display: flex; gap: .5rem 1rem; flex-wrap: wrap; }
+#auth-divider { display: flex; align-items: center; gap: .65rem; margin-block: 1rem .7rem; color: var(--brand-muted); font-size: .82rem; }
+#auth-divider::before, #auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--brand-line); }
+#continue-chatgpt { width: 100%; border: 1px solid var(--brand-control-line); }
+#auth-divider[hidden] + #continue-chatgpt { margin-top: .75rem; }
+#continue-chatgpt.secondary-button:hover { background: var(--brand-wash); }

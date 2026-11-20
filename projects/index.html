@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Customer workspaces — Plotgrain</title>
+  <link rel="icon" href="/media/plot-icon.png" type="image/png">
+</head>
+<body class="projects-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="customer-header">
+    <div class="site-wrap">
+      <a class="product-identity" href="/" aria-label="Plotgrain home"><span class="product-mark" aria-hidden="true"></span>Plotgrain</a>
+      <nav aria-label="Workspace navigation"><a href="/study/">Parcel workspace</a> <a href="/profile/">Profile</a> <a id="sign-out" href="/signout-with-chatgpt?return_to=/" target="_top" hidden>Sign out</a></nav>
+    </div>
+  </header>
+  <main class="site-wrap" id="main" tabindex="-1">
+    <section class="projects-intro">
+      <p class="eyebrow">Plotgrain</p>
+      <h1>Customer workspaces</h1>
+      <p id="account"></p>
+      <p class="project-status" id="workspace-status" role="status">Loading your account…</p>
+      <a id="sign-in" class="product-button primary-button" href="/signin-with-chatgpt?return_to=%2Fprojects%2F" target="_top" hidden>Sign in with ChatGPT</a>
+      <a id="sign-in-options" class="product-button secondary-button" href="/sign-in/?next=projects" hidden>Other sign-in options</a>
+      <button id="accept-invite" type="button" hidden>Accept customer invitation</button>
+    </section>
+
+    <div class="project-layout" id="project-layout" hidden>
+      <aside class="project-panel" aria-labelledby="customer-title">
+        <h2 id="customer-title">Customers</h2>
+        <ul id="customers" class="record-list"></ul>
+        <form id="create-customer" class="record-form">
+          <label for="customer-name">Customer name</label>
+          <input id="customer-name" name="name" required maxlength="100" autocomplete="organization">
+          <button type="submit">Add customer</button>
+        </form>
+      </aside>
+      <div class="project-detail">
+        <section id="customer-panel" class="project-panel" hidden aria-labelledby="selected-customer">
+          <header><h2 id="selected-customer" tabindex="-1"></h2><div class="record-actions"><span id="customer-role" class="role-label"></span><button id="rename-customer" type="button" hidden>Rename customer</button></div></header>
+          <h3>Projects</h3>
+          <ul id="projects" class="record-list"></ul>
+          <form id="create-project" class="record-form inline-form">
+            <div><label for="project-name">Project name</label><input id="project-name" name="name" required maxlength="100"></div>
+            <button type="submit">Create project</button>
+          </form>
+          <details id="manage-members" hidden>
+            <summary>Manage members</summary>
+            <ul id="members" class="record-list"></ul>
+            <h3>Pending invitations</h3>
+            <ul id="invitations" class="record-list"></ul>
+            <form id="create-invite" class="record-form">
+              <label for="invite-email">Member email</label>
+              <input id="invite-email" name="email" type="email" required maxlength="254" autocomplete="off">
+              <label for="invite-role">Role</label>
+              <select id="invite-role" name="role"><option value="viewer">Viewer</option><option value="editor">Editor</option></select>
+              <button type="submit">Create invitation link</button>
+            </form>
+            <div id="invite-output" hidden>
+              <label for="invite-link">Invitation link</label>
+              <input id="invite-link" readonly>
+              <button id="copy-invite" type="button">Copy link</button>
+              <p>This link can only be accepted by the invited account. The recipient also needs access to the hosted site.</p>
+            </div>
+          </details>
+        </section>
+
+        <section id="project-panel" class="project-panel" hidden aria-labelledby="selected-project">
+          <header><h2 id="selected-project" tabindex="-1"></h2><button id="rename-project" type="button" hidden>Rename project</button></header>
+          <div class="project-columns">
+            <section aria-labelledby="saved-studies-title">
+              <h3 id="saved-studies-title">Saved studies</h3>
+              <ul id="studies" class="record-list"></ul>
+              <form id="create-study" class="record-form inline-form">
+                <div><label for="study-title">Study name</label><input id="study-title" name="name" required maxlength="100"></div>
+                <button type="submit">Create study</button>
+                <label class="check-option"><input type="checkbox" name="local" id="use-local"> Start with this tab’s parcel workspace</label>
+              </form>
+            </section>
+            <section aria-labelledby="discussion-title">
+              <h3 id="discussion-title">Discussions</h3>
+              <ul id="threads" class="record-list"></ul>
+              <form id="create-thread" class="record-form inline-form">
+                <div><label for="thread-title">Topic</label><input id="thread-title" name="name" required maxlength="100"></div>
+                <button type="submit">Start thread</button>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <section id="history-panel" class="project-panel" hidden aria-labelledby="history-title">
+          <header><h2 id="history-title" tabindex="-1"></h2><div class="record-actions"><button id="rename-study" type="button" hidden>Rename study</button><a id="open-study" class="product-button secondary-button" href="/study/">Open latest draft</a></div></header>
+          <ol id="versions" class="record-list"></ol>
+          <button id="older-versions" type="button" hidden>Load older versions</button>
+        </section>
+
+        <section id="thread-panel" class="project-panel" hidden aria-labelledby="active-thread">
+          <header><h2 id="active-thread" tabindex="-1"></h2><button id="rename-thread" type="button" hidden>Rename discussion</button></header>
+          <button id="older-messages" type="button" hidden>Load earlier messages</button>
+          <ol id="messages" class="record-list messages"></ol>
+          <form id="post-message" class="record-form">
+            <label for="message">Reply</label><textarea id="message" name="message" rows="3" maxlength="4000" required></textarea>
+            <button type="submit">Post reply</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <dialog id="rename-dialog" class="project-panel" aria-labelledby="rename-title">
+    <form id="rename-form" class="record-form">
+      <h2 id="rename-title">Rename</h2>
+      <label for="record-name">Name</label>
+      <input id="record-name" name="name" required maxlength="100">
+      <p id="rename-status" role="status"></p>
+      <div class="record-actions"><button id="confirm-rename" type="submit">Save name</button><button id="cancel-rename" type="button">Cancel</button></div>
+    </form>
+  </dialog>
+  <script type="module" src="/src/projects.js"></script>
+</body>
+</html>

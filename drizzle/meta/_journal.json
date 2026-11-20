@@ -1,0 +1,12 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    { "idx": 0, "version": "6", "when": 1795132800000, "tag": "0000_customer_workspaces", "breakpoints": true },
+    { "idx": 1, "version": "6", "when": 1795132801000, "tag": "0001_account_profiles", "breakpoints": true },
+    { "idx": 2, "version": "6", "when": 1795132802000, "tag": "0002_invitation_lifecycle", "breakpoints": true },
+    { "idx": 3, "version": "6", "when": 1795132803000, "tag": "0003_password_auth", "breakpoints": true },
+    { "idx": 4, "version": "6", "when": 1795132804000, "tag": "0004_auth_delivery_limits", "breakpoints": true },
+    { "idx": 5, "version": "6", "when": 1795132805000, "tag": "0005_study_save_receipts", "breakpoints": true }
+  ]
+}

@@ -1,0 +1,32 @@
+.landing-review-navigation:not([hidden]) {
+  padding: 0 clamp(.15rem, 1vw, 1rem) .55rem; text-align: right;
+}
+.landing-review-navigation a { color: var(--brand-primary); font-size: .86rem; text-underline-offset: .2rem; }
+html[data-design] .hero-cover::after { display: none; }
+html[data-design] .hero-cover { display: grid; align-items: center; padding: 0; }
+html[data-design] .hero-image, html[data-design] .hero-image img { position: relative; }
+html[data-design] .hero-image { display: block; z-index: auto; }
+html[data-design] .hero-copy { padding: clamp(1.35rem, 4.5vw, 4.7rem); }
+html[data-design] .hero h1 { max-width: 12ch; font-size: clamp(3.35rem, 6.9vw, 7rem); }
+html[data-design=map] .hero-cover { grid-template-columns: minmax(0, .81fr) minmax(0, 1.19fr); min-height: clamp(470px, 70svh, 710px); }
+html[data-design=map] .hero-copy { grid-area: 1 / 1; }
+html[data-design=map] .hero-image { grid-area: 1 / 2; }
+html[data-design=map] .hero-image img { min-height: 100%; object-position: 62% 51%; }
+html[data-design=review] .hero-cover { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); min-height: clamp(470px, 70svh, 710px); background: var(--brand-wash); color: var(--brand-ink); }
+html[data-design=review] .hero-image { grid-area: 1 / 1; }
+html[data-design=review] .hero-image img { min-height: 100%; object-position: 56% 50%; }
+html[data-design=review] .hero .eyebrow { color: var(--brand-primary); }
+html[data-design=review] .hero .primary-button { background: var(--brand-primary); color: var(--brand-surface); }
+html[data-design=review] .hero .primary-button:hover { background: var(--brand-primary-hover); }
+html[data-design=review] .cover-secondary { background: transparent; color: var(--brand-deep); border-color: var(--brand-control-line); }
+html[data-design=review] .cover-secondary:hover { background: var(--brand-surface); }
+html[data-design=review] .hero :focus-visible { outline-color: var(--brand-focus); }
+@media (max-width: 820px) {
+  html[data-design] .hero-cover { grid-template-columns: minmax(0,1fr); min-height: auto; }
+  html[data-design] .hero-copy { grid-area: 1 / 1; }
+  html[data-design] .hero-image { grid-area: 2 / 1; }
+  html[data-design] .hero-image img { aspect-ratio: 1.8; }
+  html[data-design] .hero h1 { font-size: clamp(2.95rem, 10vw, 5.15rem); }
+  html[data-design=review] .hero-copy { grid-area: 2 / 1; }
+  html[data-design=review] .hero-image { grid-area: 1 / 1; }
+}

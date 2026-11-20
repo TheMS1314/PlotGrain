@@ -1,0 +1,27 @@
+.design-review-page .site-wrap { width: min(92%, 1260px); }
+.review-header { border-bottom: 1px solid var(--brand-line); }
+.review-header > div { display: flex; align-items: center; justify-content: space-between; gap: .7rem; min-height: 74px; }
+.review-header .product-identity { font-size: 1.3rem; }
+.review-intro { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); align-items: end; gap: .5rem 2rem; padding-block: clamp(2.4rem, 6vw, 5.4rem) clamp(1.45rem, 4vw, 3rem); }
+.review-intro .eyebrow { grid-column: 1 / -1; color: var(--brand-primary); }
+.review-intro h1 { font: 400 clamp(3.5rem, 8vw, 7rem)/.87 var(--brand-editorial); letter-spacing: -.034em; }
+.review-intro h1 em { color: var(--brand-primary); font-weight: 400; }
+.review-intro > p:last-child { max-width: 37ch; color: var(--brand-muted); padding-bottom: .22rem; font-size: clamp(1rem, 1.7vw, 1.2rem); }
+.review-directions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.8rem, 3vw, 2rem); }
+.review-direction { border: 1px solid var(--brand-line); border-radius: var(--radius-surface); overflow: hidden; background: var(--brand-surface); }
+.review-direction-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .55rem; padding: .82rem clamp(.8rem, 2vw, 1.5rem); }
+.review-direction img { aspect-ratio: 1120 / 716; object-fit: cover; background: var(--brand-wash); }
+.review-direction-copy { padding: .55rem clamp(.8rem, 2vw, 1.5rem) 1.28rem; }
+.review-direction h2 { font-size: clamp(1.96rem, 3.4vw, 3.25rem); }
+.review-sheet h2 { font-size: clamp(2.05rem, 5vw, 3.35rem); }
+.review-direction p, .review-sheet p { margin: .55rem 0; max-width: 44ch; color: var(--brand-muted); }
+.review-direction-copy .text-action { color: var(--brand-primary); }
+.review-sheet { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-block: clamp(1.8rem, 5vw, 4.2rem); padding: clamp(1rem, 4vw, 2.25rem); border-radius: var(--radius-surface); background: var(--brand-wash); }
+.review-sheet p { max-width: 58ch; margin-bottom: 0; }
+@media (max-width: 670px) {
+  .review-intro, .review-directions { grid-template-columns: minmax(0, 1fr); }
+  .review-intro > p:last-child { margin-top: .38rem; }
+  .review-header .product-identity { font-size: 1.13rem; gap: .37rem; }
+  .review-header .product-button { font-size: .83rem; padding-inline: .61rem; }
+  .review-direction-heading .product-button { font-size: .83rem; padding-inline: .55rem; }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Your profile — Plotgrain</title>
+  <link rel="icon" href="/media/plot-icon.png" type="image/png">
+</head>
+<body class="projects-page account-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="customer-header">
+    <div class="site-wrap">
+      <a class="product-identity" href="/" aria-label="Plotgrain home"><span class="product-mark" aria-hidden="true"></span>Plotgrain</a>
+      <nav aria-label="Workspace navigation">
+        <a href="/projects/">Customer workspaces</a>
+        <a id="sign-out" href="/signout-with-chatgpt?return_to=/" target="_top" hidden>Sign out</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-wrap" id="main" tabindex="-1">
+    <div class="projects-intro account-intro">
+      <h1>Your profile</h1>
+      <p id="account-status" class="project-status" role="status">Loading your profile…</p>
+      <a id="sign-in" class="product-button primary-button" href="/signin-with-chatgpt?return_to=%2Fprofile%2F" target="_top" hidden>Sign in with ChatGPT</a>
+      <a id="sign-in-options" class="product-button secondary-button" href="/sign-in/" hidden>Other sign-in options</a>
+      <button id="retry-account" class="product-button secondary-button" type="button" hidden>Try again</button>
+    </div>
+    <div id="account-content" class="project-layout account-layout" hidden>
+      <section class="project-panel" aria-labelledby="profile-title">
+        <h2 id="profile-title">Personal details</h2>
+        <dl class="account-identity">
+          <dt id="email-label">ChatGPT account email</dt>
+          <dd id="verified-email"></dd>
+        </dl>
+        <form id="profile-form" class="record-form">
+          <label for="display-name">Display name</label>
+          <input id="display-name" name="displayName" required maxlength="80" autocomplete="nickname">
+          <button id="save-profile" type="submit">Save profile</button>
+          <p id="profile-status" role="status"></p>
+        </form>
+      </section>
+      <section class="project-panel" aria-labelledby="recent-title">
+        <header><h2 id="recent-title">Recent studies</h2><a class="product-button secondary-button" href="/projects/">View workspaces</a></header>
+        <ul id="recent-studies" class="record-list"></ul>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="/src/profile.js"></script>
+</body>
+</html>
